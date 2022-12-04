@@ -3,9 +3,10 @@ def main():
     with open("day4\input.txt") as r:
         for line in r:
             first, second = list(map(int, (line.split(",")[0]).split("-"))), list(map(int, (line.split(",")[1].strip()).split("-")))    # Returns list of string-to-int elements
-            # lol
-            if first[0] <= second[0] <= first[1] or second[0] <= first[0] <= second[1] or first[0] <= second[1] <= first[1] or second[0] <= first[1] <= second[1]:
+            if first[0] <= second[1] and first[1] >= second[0]:
                 amount += 1
+            # if not (first[1] < second[0] or first[0] > second[1]):
+            #   amount += 1
     print(amount)
 
 if __name__ == "__main__":
