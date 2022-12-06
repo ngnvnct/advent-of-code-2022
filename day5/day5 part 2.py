@@ -1,0 +1,55 @@
+import re
+
+def columns():
+    file = open("day5\input.txt")
+    line = str(file.readline())
+    columns = (len(line)+1) // 4
+    file.close()
+    return columns
+
+def build(col):
+    stacks = [[] for i in range(col)]
+    with open("day5\input.txt") as r:
+        r = iter(r)
+        for line in r:
+            if line == "\n":
+                break
+            for i, char in enumerate(line):
+                if char.isalpha():
+                    stacks[i//4].append(char)
+    return stacks
+
+def instructions():
+    instructions = []
+    build = False
+    with open("day5\input.txt") as r:
+        for line in r:
+            if line == "\n":
+                build = True
+                continue
+            if build:
+                move = re.findall(r'\d+', line)
+                instructions.append(list(map(int,move)))
+
+    return instructions
+
+def main():
+    col = columns()
+
+    boxes = build(col)
+    for i in range(len(boxes)):
+        boxes[i].reverse()
+
+    moves = instructions()      # moves = [amount to move, start, end]
+    
+    for step in moves:
+        amount, start, end = step[0], step[1]-1, step[2]-1
+        temp = boxes[start][-(amount):]
+        boxes[end].extend(temp)
+        del boxes[start][-(amount):]
+
+    for i in range(len(boxes)):
+        print(boxes[i].pop(), end="")
+
+if __name__ == "__main__":
+    main()
