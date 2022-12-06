@@ -1,13 +1,13 @@
 import re
 
-def columns():
+def columns():      # each box letter is separated by 4 spaces. use the first line to establish the amount of columns
     file = open("day5\input.txt")
     line = str(file.readline())
     columns = (len(line)+1) // 4
     file.close()
     return columns
 
-def build(col):
+def build(col):     # builds the stacks. i/4 corresponds to the index in stacks
     stacks = [[] for i in range(col)]
     with open("day5\input.txt") as r:
         for line in r:
@@ -27,8 +27,8 @@ def instructions():
                 build = True
                 continue
             if build:
-                move = re.findall(r'\d+', line)
-                instructions.append(list(map(int,move)))
+                move = re.findall(r'\d+', line)     # extracts all numbers from str(line) as a list
+                instructions.append(list(map(int,move)))    # converts the list elements to int since they are strings originally
 
     return instructions
 
@@ -43,7 +43,7 @@ def main():
     
     for step in moves:
         amount, start, end = step[0], step[1]-1, step[2]-1
-        
+
         temp = boxes[start][-(amount):]
         boxes[end].extend(temp)
         del boxes[start][-(amount):]
