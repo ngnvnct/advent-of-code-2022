@@ -10,7 +10,6 @@ def columns():
 def build(col):
     stacks = [[] for i in range(col)]
     with open("day5\input.txt") as r:
-        r = iter(r)
         for line in r:
             if line == "\n":
                 break
@@ -44,6 +43,7 @@ def main():
     
     for step in moves:
         amount, start, end = step[0], step[1]-1, step[2]-1
+        
         temp = boxes[start][-(amount):]
         boxes[end].extend(temp)
         del boxes[start][-(amount):]

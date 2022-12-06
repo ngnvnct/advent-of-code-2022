@@ -10,7 +10,6 @@ def columns():
 def build(col):
     stacks = [[] for i in range(col)]
     with open("day5\input.txt") as r:
-        r = iter(r)
         for line in r:
             if line == "\n":
                 break
