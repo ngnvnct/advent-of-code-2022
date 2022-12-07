@@ -10,13 +10,13 @@ def main():
     r = open("day6\input.txt")
     line = str(r.readline()).rstrip()
 
-    for i in range(-1, len(line)-4):
-        window = line[i+1:i+5]
+    for i in range(-1, len(line)-14):
+        window = line[i+1:i+15]
 
         if not check(window):
             continue
 
-        print(i+5)
+        print(i+15)
         break
 
     r.close()
