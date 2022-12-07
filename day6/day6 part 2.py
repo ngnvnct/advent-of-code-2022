@@ -1,6 +1,6 @@
 def main():
     r = open("day6\input.txt")
-    line = str(r.readline()).rstrip()
+    line = r.readline().rstrip()
 
     for i in range(-1, len(line)-14):
         window = line[i+1:i+15]
