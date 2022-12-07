@@ -1,2 +1,2 @@
 # advent-of-code-2022
-Some more fun coding practice! I will be using Python and working on these during the nights after work and on the weekends!
+My solutions to Advent of Code 2022, written in Python. This is for general coding and problem solving practice!
