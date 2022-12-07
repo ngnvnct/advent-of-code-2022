@@ -1,11 +1,3 @@
-def check(window):
-    unique = set()
-    for c in window:
-        if c in unique:
-            return False
-        unique.add(c)
-    return True
-
 def main():
     r = open("day6\input.txt")
     line = str(r.readline()).rstrip()
@@ -13,7 +5,7 @@ def main():
     for i in range(-1, len(line)-14):
         window = line[i+1:i+15]
 
-        if not check(window):
+        if not len(set(window)) == 14:
             continue
 
         print(i+15)
