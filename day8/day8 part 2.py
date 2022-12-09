@@ -36,10 +36,8 @@ def check(y, x, grid, height, max_rows, max_cols):
 def main():
     grid = []
     with open("day8\input.txt") as r:       # build the grid/matrix
-        for i, line in enumerate(r):
-            grid.append([])
-            for n in line.rstrip():
-                grid[i].append(int(n))
+        for line in r:
+            grid.append([int(n) for n in line.strip()])
 
     rows, cols = len(grid), len(grid[0])
     visible = set()
