@@ -7,55 +7,18 @@ def main():
     rows, cols = len(grid), len(grid[0])
     visible = set()
 
-    for row in range(rows):     # checking left to right
-        curr_tallest = 0
-        for col in range(cols):
-            if col == 0:
-                curr_tallest = grid[row][col]
-                visible.add((row, col))
-                continue
-
-            if grid[row][col] > curr_tallest:
-                curr_tallest = grid[row][col]
-                visible.add((row, col))
-
-    for row in range(rows):     # checking right to left
-        curr_tallest = 0
-        for col in range(cols-1, -1, -1):
-            if col == cols -1:
-                curr_tallest = grid[row][col]
-                visible.add((row, col))
-                continue
-            
-            if grid[row][col] > curr_tallest:
-                curr_tallest = grid[row][col]
-                visible.add((row, col))
-
-    for col in range(cols):     # checking top to bottom
-        curr_tallest = 0
-        for row in range(rows):
-            if row == 0:
-                curr_tallest = grid[row][col]
-                visible.add((row, col))
-                continue
-
-            if grid[row][col] > curr_tallest:
-                curr_tallest = grid[row][col]
-                visible.add((row, col))
-
-    for col in range(cols):     # checking bottom to top
-        curr_tallest = 0
-        for row in range(rows-1, -1, -1):
-            if row == rows-1:
-                curr_tallest = grid[row][col]
-                visible.add((row, col))
-                continue
-
-            if grid[row][col] > curr_tallest:
-                curr_tallest = grid[row][col]
-                visible.add((row, col))
-    
-    print(len(visible))
+    for r in range(1, rows-1):
+        for c in range(1, cols-1):
+            for up_down, left_right in ((1,0), (-1,0), (0,1), (0,-1)):      # For each cell, check the lateral neighbors in the while loop
+                y, x = r, c
+                neighbors = []
+                while 0 <= y + up_down < rows and 0 <= x + left_right < cols:
+                    y += up_down
+                    x += left_right
+                    neighbors.append(grid[y][x])    # We will be comparing the current cell grid[r][c] to all values in the same row/col to see if there is a taller tree in the way
+                if grid[r][c] > max(neighbors):     # Yes => visible to that edge/able to see the edge from that tree; No => not visible since there is a taller tree in the LOS
+                    visible.add((r, c))
+    print(len(visible) + (rows-1)*2 + (cols-1)*2)
 
 if __name__ == "__main__":
     main()

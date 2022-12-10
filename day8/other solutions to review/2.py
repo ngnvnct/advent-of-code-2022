@@ -1,5 +1,5 @@
 """By joshbduncan on /r/adventofcode: https://www.reddit.com/r/adventofcode/comments/zfpnka/2022_day_8_solutions/izex6p5/"""
-data = open("day8.in").read().strip()
+data = open("day8\input.txt").read().strip()
 map = [[int(c) for c in r] for r in data.split("\n")]
 p1, p2 = set(), set()
 for r in range(1, len(map) - 1):
@@ -14,7 +14,7 @@ for r in range(1, len(map) - 1):
                 neighbors.append(map[r1][c1])
             if map[r][c] > max(neighbors):
                 p1.add((r, c))
-                seen *= len(neighbors)
+                seen *= len(f"{neighbors}\n\n")
             else:
                 seen *= [i+1 for i, n in enumerate(neighbors) if n >= map[r][c]][0]
             p2.add(seen)
