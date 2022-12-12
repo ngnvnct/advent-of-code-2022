@@ -1,9 +1,3 @@
-"""
-Signal strength = cycle * current X value
-Find signal strength DURING cycles 20, 60, 100, 140, 180, and 220
-noop => one cycle to complete. Does nothing
-addx => two cycles to complete. Increments X by the given value
-"""
 def main():
     with open("day10\input.txt") as r:
         cycles = [1]

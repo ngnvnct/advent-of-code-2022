@@ -1,5 +1,3 @@
-import numpy as np
-
 def main():
     with open("day10\input.txt") as r:
         cycles = []
@@ -24,6 +22,5 @@ def main():
             if i%40 == 0:
                 print("")
             print(pixel, end=" ")
-    
 if __name__ == "__main__":
     main()
