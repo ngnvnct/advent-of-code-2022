@@ -2,7 +2,7 @@ def main():
     with open("day11\input.txt") as r:
         file = r.read().splitlines()        # each element is the separate line
     
-    items = [[int(n) for n in file[x][18:].split(", ")] for x in range(1, len(file), 7)]     # 2D array of each monkey and what worry level each item is => items[monkey #][item's worry level]
+    items = [[int(n) for n in file[x][18:].split(", ")] for x in range(1, len(file), 7)]            # 2D array of each monkey and what worry level each item is => items[monkey #][item's worry level]
     operations = [[c for c in file[x][23:].split(" ")] for x in range(2, len(file), 7)]             # 2D array of each monkey's operation to an item's worry level. 0th element is operator and 1st element is amount
     test = [int(file[x][21:]) for x in range(3, len(file), 7)]                                      # Array of each monkey's test check. Every test is a divisible check. Worry levels are checked to see if they are divisible by test[monkey #]
     toss = [[int(file[x+1][30:]), int(file[x][29:])] for x in range(4, len(file), 7)]               # 2D array of which monkey the current monkey will pass their item to. 0th index is if False, 1st index is if True => toss[monkey #][False 0/True 1]
